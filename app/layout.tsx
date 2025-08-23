@@ -4,23 +4,21 @@ import './(site)/styles/globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://example.com'),
   title: 'EMI, Loan & Insurance Calculators (India)',
-  description: 'Fast, accurate EMI & loan affordability calculators with India-specific examples. AdSense-ready, mobile-first.',
+  description: 'Fast, accurate calculators with India-focused guides. AdSense-ready, mobile-first.',
   openGraph: {
     title: 'EMI, Loan & Insurance Calculators (India)',
-    description: 'Fast, accurate EMI & loan affordability calculators with India-specific examples.',
+    description: 'Fast, accurate calculators with India-focused guides.',
     url: 'https://example.com/',
     siteName: 'Finance Calculators India',
     type: 'website',
   },
-  alternates: {
-    canonical: '/',
-  },
+  alternates: { canonical: '/' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-gray-900 antialiased">
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 text-slate-900 antialiased">
         {children}
       </body>
     </html>
