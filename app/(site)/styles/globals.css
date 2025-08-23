@@ -7,7 +7,7 @@
 
 /* Aesthetic helpers */
 .card {
-  @apply rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-sm shadow-lg/5;
+  @apply rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-sm shadow-lg;
 }
 .card-soft { @apply rounded-2xl border border-gray-200/50 bg-white/70 shadow-md; }
 .h1 { @apply text-4xl sm:text-5xl font-bold tracking-tight; }
