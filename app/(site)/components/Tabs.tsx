@@ -1,28 +1,34 @@
 'use client';
 import React from 'react';
 
-type TabProps = {
-  tabs: { id: string; label: string }[];
-  activeId: string;
-  onChange: (id: string) => void;
-};
-
-export default function Tabs({ tabs, activeId, onChange }: TabProps) {
+type Tab = { id: string; label: string };
+export default function Tabs({
+  tabs, activeId, onChange,
+}: { tabs: Tab[]; activeId: string; onChange: (id: string) => void; }) {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const idx = tabs.findIndex(t => t.id === activeId);
+    if (e.key === 'ArrowRight') onChange(tabs[(idx + 1) % tabs.length].id);
+    if (e.key === 'ArrowLeft') onChange(tabs[(idx - 1 + tabs.length) % tabs.length].id);
+    if (e.key === 'Home') onChange(tabs[0].id);
+    if (e.key === 'End') onChange(tabs[tabs.length - 1].id);
+  };
   return (
-    <nav className="sticky top-0 bg-white z-10 border-b">
-      <div className="container flex space-x-4 py-3 overflow-x-auto">
-        {tabs.map((tab) => (
+    <div className="tabs" role="navigation" aria-label="Section Tabs">
+      <div role="tablist" aria-orientation="horizontal" className="tablist" onKeyDown={onKeyDown}>
+        {tabs.map(t => (
           <button
-            key={tab.id}
-            className={`px-4 py-2 rounded-md text-sm font-medium ${
-              activeId === tab.id ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-100'
-            }`}
-            onClick={() => onChange(tab.id)}
+            key={t.id}
+            role="tab"
+            aria-selected={t.id === activeId}
+            aria-controls={`panel-${t.id}`}
+            id={`tab-${t.id}`}
+            className="tab"
+            onClick={() => onChange(t.id)}
           >
-            {tab.label}
+            {t.label}
           </button>
         ))}
       </div>
-    </nav>
+    </div>
   );
 }
