@@ -84,5 +84,4 @@ export default function DTICalculator() {
       </div>
     </section>
   )
-  );
 }
